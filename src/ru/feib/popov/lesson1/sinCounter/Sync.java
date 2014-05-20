@@ -10,8 +10,8 @@ package ru.feib.popov.lesson1.sinCounter;
  *
  * @author Антон
  */
-public class TrafficLights {
-    public double value = Math.PI / 2;
+public class Sync {
+    public double value = 1;
     public Signals signal = Signals.COUNT_SIN;
     
     public void switchStatus() {

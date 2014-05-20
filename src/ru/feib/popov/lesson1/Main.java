@@ -1,9 +1,6 @@
 package ru.feib.popov.lesson1;
 //import java.io.IOException;
 
-import ru.feib.popov.lesson1.sinCounter.TrafficLights;
-import ru.feib.popov.lesson1.sinCounter.SinCounter;
-import ru.feib.popov.lesson1.sinCounter.ASinCounter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -204,7 +201,16 @@ public class Main {
                 к данным и будит его. При этом если в очереди на получение данных 
                 стоит несколько потоков, разбужен будет не первый пришедший, а
                 случайны поток.
-                Однако мониторы работают только со ссылками. Если 
+                Однако мониторы работают только со ссылками. 
+            
+                Wait с параметром "время" работает либо до тех пор, пока его
+                не разбудят, либо до определенного времени - смотря что раньше.
+                Это используется, например, для вывода сообщений пользователю о
+                том, что процесс работает.
+            
+                Метод notifyAll используется, если несколько потоков вызвали 
+                wait. Если будить потоки методом notify, то разбудится один 
+                случайный поток.
             */
             System.out.printf("Total : %d\n", badCounter);
         }
@@ -275,5 +281,5 @@ public class Main {
         
         t1.start();
         t2.start();
-    }   
+    }
 }

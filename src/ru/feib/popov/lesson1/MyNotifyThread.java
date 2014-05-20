@@ -15,8 +15,7 @@ import static java.lang.System.out;
 public class MyNotifyThread  extends Thread {
     int iter = 100;
     final Notifier notifier;
-
-    
+  
     public MyNotifyThread(String name, int iter, Notifier n) {
         super(name);
         this.iter = iter;

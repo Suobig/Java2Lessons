@@ -14,12 +14,12 @@ import java.util.logging.Logger;
  * @author Антон
  */
 public class ASinCounter extends Thread {
-    final TrafficLights tl;
+    final Sync sync;
     int iter;
     
-    public ASinCounter(String name, int iter, TrafficLights cs) {
+    public ASinCounter(String name, int iter, Sync cs) {
         super(name);
-        this.tl = cs;
+        this.sync = cs;
         this.iter = iter;
     }
     
@@ -27,14 +27,14 @@ public class ASinCounter extends Thread {
     public void run() {       
         for(int i = 0; i < iter; i++) {
             try {
-                 synchronized (tl) {
-                     while (!(tl.signal == Signals.COUNT_ASIN)) {
-                         tl.wait();
+                 synchronized (sync) {
+                     while (!(sync.signal == Signals.COUNT_ASIN)) {
+                         sync.wait();
                      }
-                     tl.value = Math.asin(tl.value);
-                     System.out.printf("%s : %.4f\n", this.getName(), tl.value);
-                     tl.switchStatus();
-                     tl.notify();
+                     sync.value = Math.asin(sync.value);
+                     System.out.printf("%s : %.4f\n", this.getName(), sync.value);
+                     sync.switchStatus();
+                     sync.notify();
                  }
              } catch (InterruptedException interruptedException) {
                  Logger.getLogger(this.getName()).

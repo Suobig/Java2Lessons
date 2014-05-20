@@ -10,12 +10,12 @@ package ru.feib.popov.lesson1.sinCounter;
  *
  * @author Антон
  */
-public class CountRunner {
+public class Main {
     public static void main(String[] args) {
         final int NUM_ITER = 1_000;
-        TrafficLights tl = new TrafficLights();
-        Thread t1 = new SinCounter(" Sin", NUM_ITER, tl);
-        Thread t2 = new ASinCounter("ASin", NUM_ITER, tl);
+        Sync sync = new Sync();
+        Thread t1 = new SinCounter(" Sin", NUM_ITER, sync);
+        Thread t2 = new ASinCounter("ASin", NUM_ITER, sync);
         
         t1.start();
         t2.start();

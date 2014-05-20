@@ -14,27 +14,27 @@ import java.util.logging.Logger;
  * @author Антон
  */
 public class SinCounter extends Thread {
-    final TrafficLights tl;
+    final Sync sync;
     int iter;
     
-    public SinCounter(String name, int iter, TrafficLights tl) {
+    public SinCounter(String name, int iter, Sync tl) {
         super(name);
         this.iter = iter;
-        this.tl = tl;
+        this.sync = tl;
     }
     
     @Override 
     public void run() {
         for(int i = 0; i < iter; i++) {
             try {
-                synchronized (tl) {
-                    while (!(tl.signal == Signals.COUNT_SIN)) {
-                        tl.wait();
+                synchronized (sync) {
+                    while (!(sync.signal == Signals.COUNT_SIN)) {
+                        sync.wait();
                     }
-                    tl.value = Math.sin(tl.value);
-                    System.out.printf("%s : %.4f\n", this.getName(), tl.value);
-                    tl.switchStatus();
-                    tl.notify();
+                    sync.value = Math.sin(sync.value);
+                    System.out.printf("%s : %.4f\n", this.getName(), sync.value);
+                    sync.switchStatus();
+                    sync.notify();
                 }
             } catch (InterruptedException interruptedException) {
                 Logger.getLogger(this.getName()).
