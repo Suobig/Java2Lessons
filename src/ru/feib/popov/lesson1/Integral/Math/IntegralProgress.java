@@ -10,16 +10,7 @@ package ru.feib.popov.lesson1.Integral.Math;
  *
  * @author popov
  */
-public class IntegralThread extends Thread {
-    double s;
-
-    public IntegralThread(double s, String name) {
-        super(name);
-        this.s = s;
-    }
-    
-    @Override
-    public void run() {
-        
-    }
+public interface IntegralProgress {
+    void showProgress(long id, CountValues cv);
+    int getStep();
 }

@@ -10,14 +10,11 @@ package ru.feib.popov.lesson1.Integral.Math;
  *
  * @author popov
  */
-public class IntegralSum {
-    private volatile double s;
-    
-    public synchronized void increase(double v) {
-        s += v;
-    }
-    
-    public double get() {
-        return s;
+public class CountValues {
+    public long counted;
+    public final long toCount;
+
+    public CountValues(long toCount) {
+        this.toCount = toCount;
     }
 }
